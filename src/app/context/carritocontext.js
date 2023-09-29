@@ -9,10 +9,16 @@ export const useCarritoContext = () => {
 }
 
 export const CarritoProvider = ({ children }) => {
-    const localSt = JSON.parse(localStorage.getItem('carrito')) || [];
-    const [carrito, setCarrito] = useState(localSt);
+    const localStorageValues = typeof window !== 'undefined' ? JSON.parse( localStorage.getItem('carrito') ) ?? [] : []
+    const [carrito, setCarrito] = useState(localStorageValues);
     const [total, setTotal] = useState(0)
 
+    // useEffect(() => {
+    //     console.log('holaaaaaaaaa')
+    //   
+    //     console.log(carritoLS) 
+    //     setCarrito(carritoLS)
+    // },[])
     useEffect(() => {
         /* TOTAL DE PRODUCTOS */
         localStorage.setItem('carrito', JSON.stringify(carrito))
@@ -43,5 +49,5 @@ export const CarritoProvider = ({ children }) => {
 
 
 
-    return <CarritoContext.Provider value={{ añarCarrito,total,carrito,handleDelete,handleCantidad }}>{children}</CarritoContext.Provider>
+    return <CarritoContext.Provider value={{ añarCarrito, total, carrito, handleDelete, handleCantidad }}>{children}</CarritoContext.Provider>
 }

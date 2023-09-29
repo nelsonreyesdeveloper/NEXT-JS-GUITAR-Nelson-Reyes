@@ -5,7 +5,7 @@ import Link from 'next/link'
 const Header = () => {
 
     const pathname = usePathname()
-
+// 
 
     return (
         <header className="py-10 bg-[url('/img/header.jpg')] bg-cover bg-no-repeat bg-center h-full w-full relative ">
